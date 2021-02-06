@@ -13,7 +13,7 @@
     createPhrases() {
         let phrases = [];
       
-        phrases = [new Phrase('egyik'), new Phrase('Kia stale len spi'), new Phrase('Zlatinko krasne milujem ta'), new Phrase('negyedik'), new Phrase('otodik')]
+        phrases = [new Phrase('egyik'), new Phrase('I miss you'), new Phrase('Today is sunday'), new Phrase('I dont know'), new Phrase('Any time')]
         
         return phrases;
     }
@@ -34,6 +34,7 @@
 
     handleInteraction(letter) {
         let button = document.querySelectorAll('.key');
+        
         for(let i = 0; button.length > i; i++) {
            let buttonValue = button[i].textContent;
          //  console.log(buttonValue)
@@ -46,7 +47,13 @@
           if(letter == buttonValue && this.activePhrase.checkLetter(letter)) {
             button[i].classList.add('chosen');
             this.activePhrase.showMatchedLetter(letter);
-            this.checkForWin();
+            
+           
+            if(this.checkForWin()){
+                let game = 'win';
+                this.gameOver(game);
+            }
+            
           } 
           
           if(letter == buttonValue && !this.activePhrase.checkLetter(letter)) {
@@ -65,34 +72,52 @@
         }
         this.missed++;
         if(this.missed == 5) {
-            this.gameOver();
+            let game = 'lose';
+            this.gameOver(game);
         }
     }
 
     checkForWin() {
+       const correct = document.querySelectorAll('.show');
+       
+        if(this.activePhrase.phrase.length === correct.length) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
-    gameOver() {
-        console.log('game')
+    gameOver(game) {
+        const message = document.querySelector('#game-over-message');
+        const overlay = document.querySelector('#overlay');
+        overlay.style.display = 'block';
+        overlay.classList.remove('start');
+
+        if(game === 'win') {
+            overlay.classList.add('win');
+            message.textContent = 'You are the winner.';
+        }
+        if(game === 'lose') {
+            overlay.classList.add('lose')
+            message.textContent = 'Maybe next time. Lose';
+        }
     }
 
-    checkForWin() {
-
-    }
+    
  }
 
- const test = new Game;
-test.createPhrases()
-test.startGame()
-//test.removeLife();
-let button = document.querySelectorAll('.key');
-for(let i = 0; button.length > i; i++) {
-    button[i].addEventListener('click', (e) => {
-       // console.log(e.target.textContent)
-        test.handleInteraction(e.target.textContent);
-    })
-}
+//  const test = new Game;
+// test.createPhrases()
+// test.startGame()
+// //test.removeLife();
+// let button = document.querySelectorAll('.key');
+// for(let i = 0; button.length > i; i++) {
+//     button[i].addEventListener('click', (e) => {
+//        // console.log(e.target.textContent)
+//         test.handleInteraction(e.target.textContent);
+//     })
+// }
 
 
 

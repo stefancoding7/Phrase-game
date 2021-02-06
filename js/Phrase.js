@@ -53,6 +53,7 @@ class Phrase {
         for(let i = 0; letterFinded.length > i; i++) {
            letterFinded[i].classList.remove('hide');
            letterFinded[i].classList.add('show');
+           letterFinded[i].style.transition = "all 1s"
         }
     }
 }
