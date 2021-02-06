@@ -26,22 +26,39 @@ class Phrase {
            }
            
        }
+       console.log(phraseUl.childNodes)
        return phraseUl.childNodes;
     }
 
     checkLetter(letter){
         let letterLower =  letter.toLowerCase();
-        letterLower = this.phrase.search(letterLower)
-        if(letterLower.length >= 1){
-            return true;
-        }
+       // console.log(letterLower)
+        letterLower = this.phrase.search(letterLower);
+       // console.log(letterLower)
+       
+            if(letterLower > -1){
+              //  console.log('fin')
+                return true;
+               
+            } else {
+              //  console.log('not fin')
+                return false;
+            }
+       
+       
     }
 
-    showMatchedLetter() {
-
+    showMatchedLetter(letter) {
+        let letterFinded = document.querySelectorAll(`.${letter}`);
+        for(let i = 0; letterFinded.length > i; i++) {
+           letterFinded[i].classList.remove('hide');
+           letterFinded[i].classList.add('show');
+        }
     }
 }
 
-const test = new Phrase('Helloe hgfh');
+// const test = new Phrase('tHello');
+// test.addPhraseToDisplay();
+// test.checkLetter('e');
+// test.showMatchedLetter('o');
 
-console.log(test.checkLetter(''));
