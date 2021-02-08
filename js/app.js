@@ -17,7 +17,7 @@ const maxLevel = 4; //set the max level of the game. After when gamer hits the m
 const startingTime = 180; // set the starting time for level 1 - (180 seconds means 3 minutes)
 
 const decreaseTime = 20; //every time when level is go up will decrease from the current time the given number 
-//forexample if you give 20 seconds in next level will decrease 3 minutes 20 seconds by 20 seconds
+//forexample if you give 20 seconds in next level will decrease 3 minutes by 20 seconds
 
 /*
 *
