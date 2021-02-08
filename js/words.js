@@ -3,7 +3,7 @@ const data = [
     'Be the change that you wish to see in the world',
     'Those who dare to fail miserably can achieve greatly',
     'We accept the love we think we deserve',
-    'If you want to be happy be'
+    'If you want to be happy be happy'
 ];
 
 

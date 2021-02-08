@@ -56,7 +56,7 @@ class Phrase {
                 phrase.classList.add('shake'); //set class to shake
                 let stop = 250; // set the shake time
                 
-                // if missed hit 4 tha sake method set to 0 second
+                // if missed hit 4 tha sake method set to 0
                 if(game.missed === 4) {
                     stop = 0;
                 }
