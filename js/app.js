@@ -3,6 +3,30 @@
  * app.js */
 
 
+/*
+* this section for timer and level settings only ---------START
+*
+* You could configure the game here by revriting those cons variables
+*
+*/
+
+const maxLevel = 3; //set the max level of the game. After when gamer hits the max level the game will end
+//forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
+// you would like to finish the game with level 3 set the value to level 4
+
+const startingTime = 120; // set the starting time for level 1 - (220 means 3 minutes and 20 seconds)
+
+const decreaseTime = 10; //every time when level is go up will decrease from the current time the given number 
+//forexample if you give 20 seconds in next level will decrease 3 minutes 20 seconds by 20 seconds
+
+/*
+*
+*
+*
+* this section for timer and level settings only ---------END
+*/
+
+
 
 const startButton = document.querySelector('#btn__reset');
 const button = document.querySelectorAll('.key');
@@ -77,3 +101,4 @@ window.addEventListener('keydown', function (e) {
 hint.addEventListener('click', () => {
     game.hintFW();
 })
+

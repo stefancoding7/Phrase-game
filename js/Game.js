@@ -45,7 +45,7 @@
 
         game.levelF(); //call functo to show the current level
 
-        let time = 220 - (this.level * 20); //sum the current level and get the decrease time after each level
+        let time = startingTime - (this.level * decreaseTime); //sum the current level and get the decrease time after each level
         game.countDown(time); // call function with summed time
        
         hint.textContent = `Hint ${this.hint}`; //set the hint button to the current hint number
@@ -148,7 +148,7 @@
         let pharseNoSpace = this.activePhrase.phrase.replace(/\s/g, ''); // remove all space from phrase and get the correct length of the phrase
 
         //check if pharse length is same than the all "show" class lenght end if level is equal to 10 if yes return true
-        if(pharseNoSpace.length === correct.length || this.level === 10){
+        if(pharseNoSpace.length === correct.length || this.level === maxLevel){
             return true;
         } else {
             return false;
@@ -185,8 +185,8 @@
             this.level = 1;
         }
 
-        //if level equal to 10 set hint and level to the started value
-        if(this.level === 10) {
+        //if level equal to 'maxLevel' set hint and level to the started value
+        if(this.level === maxLevel) {
             overlay.classList.add('win');
             message.textContent = 'Congratulation you hitted the max level';
             btn_reset.textContent = 'Play again';
