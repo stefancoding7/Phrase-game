@@ -5,7 +5,9 @@
 
 /*
 ******************************************************************************************
-* this section for timer and level settings only ---------START
+*
+* THIS SECTION FOR TIMER AND LEVEL SETTINGS ONLY ---------START
+* 
 *********************************************************************
 * You could configure the game here by revriting those cons variables
 ***********************************************************
