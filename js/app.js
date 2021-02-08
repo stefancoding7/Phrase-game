@@ -5,41 +5,75 @@
 
 
 const startButton = document.querySelector('#btn__reset');
-let button = document.querySelectorAll('.key');
-const game = new Game;
+const button = document.querySelectorAll('.key');
+const overlay = document.querySelector('#overlay');
+const hint = document.querySelector('.hint');
+const message = document.querySelector('#game-over-message');
+const banner = document.querySelector('#banner');
+const btn_reset = document.querySelector('#btn__reset');
+const header = document.querySelector('.header');
 
+
+const game = new Game; //new game class
+
+
+//add click event on start button
 startButton.addEventListener('click', () => {
    
-    
     const li = document.querySelectorAll('#phrase > ul > li');
     const ul = document.querySelector('#phrase > ul');
-    const key = document.querySelectorAll('.key');
-    console.log(li);
+   
+    //loop over all li element and remove it
     for(let i = 0; li.length > i; i++) {
         ul.removeChild(li[i])
     }
-    for(let i = 0; key.length > i; i++) {
-        key[i].classList.remove('chosen');
-        key[i].classList.remove('wrong');
-        key[i].disabled = false;
+
+    //loop over all virtual keyboard set disable false and remove class
+    for(let i = 0; button.length > i; i++) {
+
+        button[i].classList.remove('chosen');
+        button[i].classList.remove('wrong');
+        button[i].disabled = false;
 
     }
+
+
     let liImage = document.querySelectorAll('#scoreboard > ol > li');
         
+        //loop over the li images and set all heart images back to the liveHeart.png
         for(let i = 0; liImage.length > i; i++) {
             liImage[i].firstElementChild.src = 'images/liveHeart.png';
         }
 
-    game.missed = 0;
-    game.startGame();
+    //remove class name 'win' or 'lose'  and set it classname to 'start; 
+    if(overlay.className == 'win' || overlay.className == 'lose') {
+        overlay.classList.remove('win');
+        overlay.classList.remove('lose');
+        overlay.classList.add('start');
+    }
+
+    game.missed = 0; //set back missed to 0
+    
+    game.startGame(); //call startGame method from Game class
 });
 
 
-
+//loop over virtualkeyboard and get the textcontent from each button
 for(let i = 0; button.length > i; i++) {
+
     button[i].addEventListener('click', (e) => {
         
-       // console.log(e.target.textContent)
         game.handleInteraction(e.target.textContent);
+
     })
 }
+
+//use keydown event for keyboard and call handleInteraction method
+window.addEventListener('keydown', function (e) {
+    game.handleInteraction(e.key);
+  }, false);
+
+//use event click for hint button and call hintFW method
+hint.addEventListener('click', () => {
+    game.hintFW();
+})
