@@ -6,7 +6,7 @@
 /*
 ******************************************************************************************
 *
-* THIS SECTION FOR TIMER AND LEVEL SETTINGS ONLY ---------START
+* THIS SECTION FOR TIMER,RANDOMPHRASE AND LEVEL SETTINGS ONLY ---------START
 * 
 *********************************************************************
 * You could configure the game here by revriting those cons variables
@@ -15,16 +15,23 @@
 *****************************
 */
 
-const maxLevel = 4; //set the max level of the game. After when gamer hits the max level the game will end
-//forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
-// you would like to finish the game with level 3 set the value to level 4
+const maxLevel = 6;        /* set the max level of the game. After when gamer hits the max level the game will end
+                            * forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
+                            * you would like to finish the game with level 3 set the value to level 4
+                            */
 
-const startingTime = 180; // set the starting time for level 1 - (180 seconds means 3 minutes)
+const startingTime = 180;   // set the starting time for level 1 - (180 seconds means 3 minutes)
 
-const decreaseTime = 20; //every time when level is go up will decrease from the current time the given number 
-//forexample if you give 20 seconds in next level will decrease 3 minutes by 20 seconds
 
-/*
+const decreaseTime = 10;    //every time when level is go up will decrease from the current time the given number 
+                            //forexample if you give 20 seconds in next level will decrease 3 minutes by 20 seconds
+
+
+const randomPhrase = true; /* true -> the same phrase could repeat any time 
+                             * false -> take off already solved phrases, so can not be the same phrase in one game
+                             */
+
+/*      
 ***************************************************************************************
 *******************************************************************************
 ***********************************************************************
@@ -46,8 +53,16 @@ const btn_reset = document.querySelector('#btn__reset');
 const header = document.querySelector('.header');
 
 let choosedLetter = [];
+
+
+
 const game = new Game; //new game class
 
+//this when randomPhrase is set to false
+let allPhrase = [];
+let allPhrasesForReset = [];
+allPhrasesForReset.push(game.phrases);
+allPhrase.push(game.phrases);
 
 //add click event on start button
 startButton.addEventListener('click', () => {

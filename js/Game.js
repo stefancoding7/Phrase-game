@@ -12,7 +12,7 @@
          this.activePhrase = null; // the currently playes phrase
          // this is for extras @this.level is a current level stage and @hint is a current hint
          this.level = 1; // current level - increase 
-         this.hint = 5; //left hint - decrease
+         this.hint = 10; //left hint - decrease
      }
 
 
@@ -40,8 +40,7 @@
      *
      */
     startGame() {
-        
-        choosedLetter = [];
+
 
         overlay.style.display = 'none'; //set overlay div to display none when the game start
 
@@ -51,8 +50,20 @@
         game.countDown(time); // call function with summed time
        
         hint.textContent = `Hint ${this.hint}`; //set the hint button to the current hint number
- 
-        this.activePhrase = this.phrases[this.getRandomPhrase(this.phrases.length)]; //get random phrases and store it to the activePhrase
+        
+       
+       
+        if(randomPhrase) {
+            this.activePhrase = this.phrases[this.getRandomPhrase(this.phrases.length)]; //get random phrases and store it to the activePhrase   
+        } else {
+            let randomNumber = this.getRandomPhrase(allPhrase[0].length);
+            console.log(randomNumber);
+            this.activePhrase = allPhrase[0][randomNumber]; //get random phrases and store it to the activePhrase
+            allPhrase[0].splice(randomNumber, 1);
+            
+            
+        }   
+         
         this.activePhrase.addPhraseToDisplay(); //call function from Phrase class and dislpay the random phrase
 
         //generate end set the  background with random color after each level
@@ -113,7 +124,7 @@
             
             } 
           
-            //if paramehter not match with letters in phrase est class name to 'wrong' and call removelife function
+            //if paramehter not match with letters in phrase set class name to 'wrong' and call removelife function
             if(letter == buttonValue && !this.activePhrase.checkLetter(letter)) {
                 //if key board is true push choosed letters in array and return true in 'disableLetter' if has been choosed
                 if(keyboard) {  
@@ -165,14 +176,15 @@
         const correct = document.querySelectorAll('.show');
 
         let pharseNoSpace = this.activePhrase.phrase.replace(/\s/g, ''); // remove all space from phrase and get the correct length of the phrase
-
+        
         //check if pharse length is same than the all "show" class lenght end if level is equal to 10 if yes return true
         if(pharseNoSpace.length === correct.length || this.level === maxLevel){
+
             return true;
         } else {
             return false;
         }
-        
+       
 
     }
 
@@ -191,7 +203,6 @@
             overlay.classList.add('win');
             message.textContent = 'Try next level?';
             btn_reset.textContent = 'Next';
-           
             this.level++;
         }
 
@@ -200,8 +211,14 @@
             overlay.classList.add('lose')
             message.textContent = ' Lose. Maybe next time.';
             btn_reset.textContent = 'Play again';
-            this.hint = 5;
+            this.hint = 10;
             this.level = 1;
+            if(!randomPhrase) {
+                allPhrase = [];
+                this.phrases = this.createPhrases();
+                allPhrase.push(this.phrases);
+            }
+            
         }
 
         //if level equal to 'maxLevel' set hint and level to the started value
@@ -209,8 +226,13 @@
             overlay.classList.add('win');
             message.textContent = 'Congratulation you hitted the max level';
             btn_reset.textContent = 'Play again';
-            this.hint = 5;
+            this.hint = 10;
             this.level = 1;
+            if(!randomPhrase) {
+                allPhrase = [];
+                this.phrases = this.createPhrases();
+                allPhrase.push(this.phrases);
+            }
         }
         
     }
@@ -329,16 +351,16 @@
 
             //if any class with name 'show' push textcontent in to the array 
             if(show) {
-                for(let i = 1; show.length > i; i++) {
+                for(let i = 0; show.length > i; i++) {
 
                     choosedLetters.push(show[i].textContent);
                     
                 }
             }
-            
+            console.log(choosedLetters);
             //get activePhrase without spaces
             activePhraseNoSpace =  Array.from((this.activePhrase.phrase.replace(/\s/g, '')))
-            
+            console.log(activePhraseNoSpace)
             //check if any letters not mathces from 'activePhraseNoSpace' content of 'choosedLetters'
             const noChoosedLetters = activePhraseNoSpace
                 .filter(item => !choosedLetters
