@@ -45,7 +45,7 @@
 
         game.levelF(); //call functo to show the current level
 
-        let time = startingTime - (this.level * decreaseTime); //sum the current level and get the decrease time after each level
+        let time = startingTime + decreaseTime - (this.level * decreaseTime); //sum the current level and get the decrease time after each level
         game.countDown(time); // call function with summed time
        
         hint.textContent = `Hint ${this.hint}`; //set the hint button to the current hint number
@@ -215,6 +215,10 @@
         
         const timer = setInterval( function() {
             timeDown--; // decrease variable
+            if(timeDown <= 10) {
+                h2.style.animation = 'blinker 1s linear infinite';
+            }
+            
             h2.textContent = closure.convertNumberToTime(timeDown);
             
             //if timedown is 0 call gameOver method and clearInterval
@@ -252,6 +256,8 @@
      *     foo('hello')
      */
     convertNumberToTime(time) {
+       
+        
         let minutes = Math.floor(time / 60);
         let seconds = time % 60;
         

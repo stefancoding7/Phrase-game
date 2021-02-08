@@ -14,9 +14,9 @@ const maxLevel = 10; //set the max level of the game. After when gamer hits the 
 //forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
 // you would like to finish the game with level 3 set the value to level 4
 
-const startingTime = 220; // set the starting time for level 1 - (220 means 3 minutes and 20 seconds)
+const startingTime = 180; // set the starting time for level 1 - (180 seconds means 3 minutes)
 
-const decreaseTime = 20; //every time when level is go up will decrease from the current time the given number 
+const decreaseTime = 2; //every time when level is go up will decrease from the current time the given number 
 //forexample if you give 20 seconds in next level will decrease 3 minutes 20 seconds by 20 seconds
 
 /*

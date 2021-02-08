@@ -4,8 +4,9 @@ const data = [
     'Those who dare to fail miserably can achieve greatly',
     'We accept the love we think we deserve',
     'If you want to be happy be'
-
 ];
+
+
 
 
 
