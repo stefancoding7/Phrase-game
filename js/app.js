@@ -45,7 +45,7 @@ const banner = document.querySelector('#banner');
 const btn_reset = document.querySelector('#btn__reset');
 const header = document.querySelector('.header');
 
-
+let choosedLetter = [];
 const game = new Game; //new game class
 
 
@@ -102,8 +102,9 @@ for(let i = 0; button.length > i; i++) {
 
 //use keydown event for keyboard and call handleInteraction method
 window.addEventListener('keydown', function (e) {
-    game.handleInteraction(e.key);
-  }, false);
+    game.handleInteraction(e.key, true);
+    
+  });
 
 //use event click for hint button and call hintFW method
 hint.addEventListener('click', () => {

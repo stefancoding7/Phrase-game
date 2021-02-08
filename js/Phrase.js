@@ -29,7 +29,9 @@ class Phrase {
                 li.className = `hide letter ${this.phrase[i]}`;
                 li.textContent = this.phrase[i];
                 li.style.fontSize = '0px'; // set the font size to 0px avoid to see letters by selecting
+               
                 phraseUl.appendChild(li);
+               
             }
            
        }

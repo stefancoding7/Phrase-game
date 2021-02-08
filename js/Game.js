@@ -40,7 +40,9 @@
      *
      */
     startGame() {
-      
+        
+        choosedLetter = [];
+
         overlay.style.display = 'none'; //set overlay div to display none when the game start
 
         game.levelF(); //call functo to show the current level
@@ -78,9 +80,13 @@
      * @param {string} letter - set the choosed letter to disabled and add class name
      * @return - no return anything
      */
-    handleInteraction(letter) {
+    handleInteraction(letter, keyboard) {
         
         
+        let disableLetter = false;
+
+
+
         /*loop over all key and check iff any button textcontetn matches with paramater if yes set the button to disabled
         * 
         */
@@ -109,8 +115,21 @@
           
             //if paramehter not match with letters in phrase est class name to 'wrong' and call removelife function
             if(letter == buttonValue && !this.activePhrase.checkLetter(letter)) {
+                //if key board is true push choosed letters in array and return true in 'disableLetter' if has been choosed
+                if(keyboard) {  
+
+                    disableLetter = choosedLetter.includes(letter)
+                
+                    choosedLetter.push(letter);
+                }
+                
                 button[i].classList.add('wrong');
-                this.removeLife();
+
+                //if true not remove the life
+                if(!disableLetter) {
+                    this.removeLife();
+                }
+                
             }
         }
 
@@ -324,7 +343,7 @@
             const noChoosedLetters = activePhraseNoSpace
                 .filter(item => !choosedLetters
                 .includes(item));
-            console.log(noChoosedLetters)
+           
             //get any random letter what is was not choosed yet
             let randomLetter = noChoosedLetters[[Math.floor(Math.random() * noChoosedLetters.length)]];
             
