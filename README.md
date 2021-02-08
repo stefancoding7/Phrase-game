@@ -22,6 +22,9 @@
     <li><b>Background Change</b>
     <p>1. For every level background is changing</p>
     </li>
+     <li><b>Shake</b>
+    <p>1. Shake the pharse if choosed letter is wrong</p>
+    </li>
 </ul>
 
 
