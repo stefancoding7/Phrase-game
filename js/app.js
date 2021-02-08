@@ -4,10 +4,13 @@
 
 
 /*
+******************************************************************************************
 * this section for timer and level settings only ---------START
-*
+*********************************************************************
 * You could configure the game here by revriting those cons variables
-*
+***********************************************************
+******************************************
+*****************************
 */
 
 const maxLevel = 4; //set the max level of the game. After when gamer hits the max level the game will end
@@ -20,10 +23,13 @@ const decreaseTime = 20; //every time when level is go up will decrease from the
 //forexample if you give 20 seconds in next level will decrease 3 minutes by 20 seconds
 
 /*
-*
-*
-*
+***************************************************************************************
+*******************************************************************************
+***********************************************************************
 * this section for timer and level settings only ---------END
+****************************************************
+*******************************************
+***********************
 */
 
 
