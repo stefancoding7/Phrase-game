@@ -40,8 +40,8 @@
      *
      */
     startGame() {
-
-
+        lastPhrase = []; // set last phrase to empty array t get next phrase
+        console.log(`startgame: ${lastPhrase}`)
         overlay.style.display = 'none'; //set overlay div to display none when the game start
 
         game.levelF(); //call functo to show the current level
@@ -54,11 +54,14 @@
        
        
         if(randomPhrase) {
-            this.activePhrase = this.phrases[this.getRandomPhrase(this.phrases.length)]; //get random phrases and store it to the activePhrase   
+            this.activePhrase = this.phrases[this.getRandomPhrase(this.phrases.length)]; //get random phrases and store it to the activePhrase
+            lastPhrase.push(this.activePhrase.phrase);   
         } else {
             let randomNumber = this.getRandomPhrase(allPhrase[0].length);
             console.log(randomNumber);
             this.activePhrase = allPhrase[0][randomNumber]; //get random phrases and store it to the activePhrase
+            lastPhrase.push(this.activePhrase.phrase);  
+            
             allPhrase[0].splice(randomNumber, 1);
             
             
@@ -202,7 +205,7 @@
         // this conditionals check if paramater has any accepted strings
         if(game === 'win') {
             overlay.classList.add('win');
-            message.textContent = 'Try next level?';
+            message.innerHTML = `${this.level}-${maxLevel - 1} Level`;
             btn_reset.textContent = 'Next';
             this.level++;
             console.log(`game: ${this.level}`)
@@ -211,7 +214,9 @@
         //'timeover' string is determine if countDown() method increase all time
         if(game === 'lose' || game === 'timeover') {
             overlay.classList.add('lose')
-            message.textContent = ' Lose. Maybe next time.';
+            message.innerHTML = `Lose. Maybe next time. Level-${this.level} <br><br>
+            <h1 style="padding: 10px; border: 2px solid gray; background-color: white; color: gray; border-radius: 10px;">${lastPhrase[0]}</h1>`;
+            
             btn_reset.textContent = 'Play again';
             this.hint = setHint;
             this.level = 1;
@@ -395,7 +400,7 @@
            //after 0.25 second remove classname 'shake'
            setTimeout(function() {
                 hint.classList.remove('shake');
-            }, 250)
+            }, 200)
        }
         
     }

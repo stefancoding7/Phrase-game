@@ -31,7 +31,7 @@ const randomPhrase = false; /* true -> the same phrase could repeat any time
                              * false -> take off already solved phrases, so can not be the same phrase in one game
                              */
 
-const setHint = 5;         /* 
+const setHint = 20;         /* 
                             * Set hint to any number
                             * 
                             */                             
@@ -66,6 +66,7 @@ const game = new Game; //new game class
 //this when randomPhrase is set to false
 let allPhrase = [];
 let allPhrasesForReset = [];
+let lastPhrase = [];
 allPhrasesForReset.push(game.phrases);
 allPhrase.push(game.phrases);
 
