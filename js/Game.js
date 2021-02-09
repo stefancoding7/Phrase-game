@@ -12,7 +12,7 @@
          this.activePhrase = null; // the currently playes phrase
          // this is for extras @this.level is a current level stage and @hint is a current hint
          this.level = 1; // current level - increase 
-         this.hint = 10; //left hint - decrease
+         this.hint = setHint; //left hint - decrease
      }
 
 
@@ -178,6 +178,7 @@
         let pharseNoSpace = this.activePhrase.phrase.replace(/\s/g, ''); // remove all space from phrase and get the correct length of the phrase
         
         //check if pharse length is same than the all "show" class lenght end if level is equal to 10 if yes return true
+
         if(pharseNoSpace.length === correct.length || this.level === maxLevel){
 
             return true;
@@ -204,6 +205,7 @@
             message.textContent = 'Try next level?';
             btn_reset.textContent = 'Next';
             this.level++;
+            console.log(`game: ${this.level}`)
         }
 
         //'timeover' string is determine if countDown() method increase all time
@@ -211,7 +213,7 @@
             overlay.classList.add('lose')
             message.textContent = ' Lose. Maybe next time.';
             btn_reset.textContent = 'Play again';
-            this.hint = 10;
+            this.hint = setHint;
             this.level = 1;
             if(!randomPhrase) {
                 allPhrase = [];
@@ -226,7 +228,7 @@
             overlay.classList.add('win');
             message.textContent = 'Congratulation you hitted the max level';
             btn_reset.textContent = 'Play again';
-            this.hint = 10;
+            this.hint = setHint;
             this.level = 1;
             if(!randomPhrase) {
                 allPhrase = [];
@@ -382,11 +384,19 @@
             hint.textContent = `Hint ${this.hint}`; //show the current hint 
 
             //call gameOver function with win if all letter filled
-            if(this.checkForWin()) {
-                    let game = 'win';
-                    this.gameOver(game);
-            }
-       } 
+            console.log(`hintF: ${this.level}`)
+            // if(this.checkForWin()) {
+            //         let game = 'win';
+            //         this.gameOver(game);
+            // }
+       } else {
+           hint.classList.add('shake'); // set class to shake
+           
+           //after 0.25 second remove classname 'shake'
+           setTimeout(function() {
+                hint.classList.remove('shake');
+            }, 250)
+       }
         
     }
     
