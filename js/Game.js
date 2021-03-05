@@ -13,18 +13,32 @@
          // this is for extras @this.level is a current level stage and @hint is a current hint
          this.level = 1; // current level - increase 
          this.hint = setHint; //left hint - decrease
+         this.credit = 0;
      }
 
 
     createPhrases() {
 
         const phrases = [];
-
+        
         //loop over the data array and push it to the phrases array
-        for (let phrase of data) {
-            const listed = new Phrase(phrase);
-            phrases.push(listed)
+        for(let i=0, len=data.length; i<len; i++){
+           
+            for(let j=0, len2=data[i][1].length; j<len2; j++) {
+               
+              // console.log(`phrase: ${data[i][1][j] }` )
+              // console.log(`region: ${data[i][0]}`)
+                    // for (let phrase of data[i]) {
+                        
+                         const listed = new Phrase(data[i][1][j], data[i][0][0]);
+                         phrases.push(listed)
+                    // } 
+               
+                
+            }
+            
         }
+        
 
         // return class object of Phrases
         return phrases;
@@ -44,33 +58,54 @@
         console.log(`startgame: ${lastPhrase}`)
         overlay.style.display = 'none'; //set overlay div to display none when the game start
 
-        game.levelF(); //call functo to show the current level
+        localStorage.setItem('credit', this.credit);
+
 
         let time = startingTime + decreaseTime - (this.level * decreaseTime); //sum the current level and get the decrease time after each level
         game.countDown(time); // call function with summed time
        
         hint.textContent = `Hint ${this.hint}`; //set the hint button to the current hint number
         
-       
-       
+        let randomKruh = this.getRandomPhrase(data.length);
+        
+        //this.interval(9)
+        
+
         if(randomPhrase) {
             this.activePhrase = this.phrases[this.getRandomPhrase(this.phrases.length)]; //get random phrases and store it to the activePhrase
             lastPhrase.push(this.activePhrase.phrase);   
         } else {
+            
             let randomNumber = this.getRandomPhrase(allPhrase[0].length);
-            console.log(randomNumber);
+           // console.log(allPhrase[0][0])
+            //console.log(randomNumber);
+            console.log(allPhrase[0])
             this.activePhrase = allPhrase[0][randomNumber]; //get random phrases and store it to the activePhrase
             lastPhrase.push(this.activePhrase.phrase);  
-            
+            //console.log(this.activePhrase)
             allPhrase[0].splice(randomNumber, 1);
             
             
         }   
          
         this.activePhrase.addPhraseToDisplay(); //call function from Phrase class and dislpay the random phrase
+        const help = Math.floor((maxLevel/100) * percent);
+        if(this.level <= help) {
+            let clouser = this;
+            setTimeout(function() {
+               const timer = setInterval(function() {
+                    clouser.hintFW(true);
+                    setTimeout(function() {
+                        clearInterval(timer);
+                    }, clouser.getRandomPhrase(699))
+                    
+                }, 200)
+                
+            }, 200)
+            
+        }
 
-        //generate end set the  background with random color after each level
-        document.querySelector('body').style.backgroundColor = `rgba(${this.randomRgba(255)},${this.randomRgba(255)},${this.randomRgba(255)},0.5)`;
+       
         
     } 
 
@@ -205,9 +240,12 @@
         // this conditionals check if paramater has any accepted strings
         if(game === 'win') {
             overlay.classList.add('win');
-            message.innerHTML = `${this.level}-${maxLevel - 1} Level`;
+            message.innerHTML = `${this.level} - ${maxLevel - 1} Level <br><br>
+            <h1 style="padding: 10px; border: 2px solid gray; background-color: white; color: gray; border-radius: 10px;"> ${lastPhrase[0]}</h1>`;
             btn_reset.textContent = 'Next';
             this.level++;
+            this.credit += 20;
+           
             console.log(`game: ${this.level}`)
         }
 
@@ -258,7 +296,7 @@
 
         const h2 = document.createElement('h2');
         h2.className = 'count';
-        h2.textContent = 'Ready?';
+        h2.textContent = 'Ready? LEVEL ' + this.level;
 
         
         const timer = setInterval( function() {
@@ -267,7 +305,7 @@
                 h2.style.animation = 'blinker 1s linear infinite';
             }
             
-            h2.textContent = closure.convertNumberToTime(timeDown);
+            h2.innerHTML = `${closure.convertNumberToTime(timeDown)} <span class="level">LEVEL-${closure.level}</span>`;
             
             //if timedown is 0 call gameOver method and clearInterval
             if(!timeDown) {
@@ -329,18 +367,7 @@
         return random;
     }
    
-    /**
-     * levelF method update the level and add span element in to the header h2 element
-     *
-     */
-    levelF() {
-        
-
-        const headerWithLevel = header.innerHTML = `Phrase Hunter <span style="color: orange; border: 2px solid gray; border-radius: 10px; padding: 10px; background-color: white;">Level: ${this.level}</span>`; 
-        
-        return headerWithLevel;
-    }
-
+   
     /**
      * hintFW() method determine which letter wasnt choosed frome the phrase and gice radnom letter what is was not choosed yet
      *
@@ -349,9 +376,9 @@
      *
      *
      */
-     hintFW() {
+     hintFW(startlevel) {
 
-       if(this.hint > 0) {
+       if(this.hint > 0 || startlevel) {
             const show = document.querySelectorAll('.show');
             let choosedLetters = [];
             let activePhraseNoSpace = [];
@@ -364,10 +391,10 @@
                     
                 }
             }
-            console.log(choosedLetters);
+         //   console.log(choosedLetters);
             //get activePhrase without spaces
             activePhraseNoSpace =  Array.from((this.activePhrase.phrase.replace(/\s/g, '')))
-            console.log(activePhraseNoSpace)
+          //  console.log(activePhraseNoSpace)
             //check if any letters not mathces from 'activePhraseNoSpace' content of 'choosedLetters'
             const noChoosedLetters = activePhraseNoSpace
                 .filter(item => !choosedLetters
@@ -385,8 +412,11 @@
 
             this.activePhrase.showMatchedLetter(randomLetter); //call method to show which letter has been randomly choosed
 
-            this.hint--; //decrease the 'hint'
-            hint.textContent = `Hint ${this.hint}`; //show the current hint 
+            if(!startlevel){
+                this.hint--; //decrease the 'hint'
+                hint.textContent = `Hint ${this.hint}`; //show the current hint 
+            }
+           
 
             //call gameOver function with win if all letter filled
             console.log(`hintF: ${this.level}`)
@@ -405,6 +435,30 @@
         
     }
     
+    interval(number){
+      //  clearInterval(timer);
+        let numberT = 0;
+        let clouser = this;
+        const timer = setInterval(function() {
+           // let random = Math.floor(Math.random() * number);
+             //generate end set the  background with random color after each level
+             let body = document.querySelector('body');
+             
+             
+             if(numberT <= 380 ){
+                numberT++;
+                
+             } 
+
+             if(numberT > 380) {
+                // clearInterval(timer);
+                 numberT = 0;
+             }
+             console.log(numberT)
+             body.style.backgroundImage = `linear-gradient(${numberT}deg, rgba(2,0,36,1) 0%, rgba(103,103,103,1) 0%, rgba(235,235,235,0) 100%)`;
+             body.style.transition = "2s";
+        }, 50)
+    }
     
  }
 

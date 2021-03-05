@@ -4,8 +4,9 @@
 
 class Phrase {
 
-    constructor(phrase) {
+    constructor(phrase, region) {
         this.phrase = phrase.toLowerCase();
+        this.region = region;
     }
     
      /**
@@ -20,7 +21,7 @@ class Phrase {
        //loop over the phrase if there space set the className to 'space'
        for(let  i = 0; this.phrase.length > i; i++){
             let li = document.createElement('li');
-            
+            const region = document.querySelector('#region');
             if(this.phrase[i] === ' ') {
                li.className = 'space';
                li.textContent = ' ';
@@ -29,9 +30,9 @@ class Phrase {
                 li.className = `hide letter ${this.phrase[i]}`;
                 li.textContent = this.phrase[i];
                 li.style.fontSize = '0px'; // set the font size to 0px avoid to see letters by selecting
-               
+                region.textContent = this.region;
                 phraseUl.appendChild(li);
-               
+                
             }
            
        }
@@ -91,7 +92,7 @@ class Phrase {
            letterFinded[i].classList.add('show');
            
             letterFinded[i].style.transition = "all 1s";
-            letterFinded[i].style.fontSize = '20px';
+            letterFinded[i].style.fontSize = '40px';
         }
 
         return true;

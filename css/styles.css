@@ -33,7 +33,10 @@ body {
 li, ol, ul {
   padding: 0;
   display: inline-block;
+ 
 }
+
+
 
 h2 {
   margin: 0;
@@ -53,7 +56,7 @@ button {
   color: var(--color-keys);
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
@@ -94,13 +97,14 @@ button {
 
 .letter {
   font-size: var(--font-size-medium);
-  height: 65px;
-  width: 65px;
+  height: 85px;
+  width: 85px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
-  border-radius: 5px;
+  border-radius: 0px;
+  border: 1px solid gray;
 }
 
 .space {
@@ -110,14 +114,15 @@ button {
 
 
 .show {
-  color: #fff;
+  color:  black;
+  font-weight: 900;
   background-color: #4ac0d5;
   font-size: 20px;
-  height: 65px;
-  width: 65px;
+  height: 85px;
+  width: 85px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
 }
@@ -224,4 +229,51 @@ button {
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@media only screen and (max-width: 600px) {
+  .letter {
+    font-size: var(--font-size-medium);
+    height: 30px;
+    width: 30px;
+    padding: 20px 1px 0 1px;
+    margin-right: 2px;
+    color: transparent;
+    background: var(--color-neutral-light);
+    border-radius: 0px;
+    border: 1px solid gray;
+  }
+  
+  .space {
+    width: 20px;
+  }
+  
+  
+  
+  .show {
+    color:  black;
+    font-weight: 900;
+    background-color: #4ac0d5;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    padding: 20px 1px 0 1px;
+    margin-right: 2px;
+    border-radius: 0px;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+  }
+
+  .key{
+    padding: 4px;
+  }
+
+  #region{
+    font-size: 30px;
+  }
+
+  .count{
+    display: inline-block;
+  }
+
 }

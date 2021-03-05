@@ -20,6 +20,8 @@ const maxLevel = 21;        /* set the max level of the game. After when gamer h
                             * you would like to finish the game with level 3 set the value to level 4
                             */
 
+const percent = 50;         /* help beginning of the game. this value is percentage (%), so if you set maxLevel to 20 and percent to 25 in first 5 level get  random few letter  to help 
+                            */
 const startingTime = 450;   // set the starting time for level 1 - (180 seconds means 3 minutes)
 
 
@@ -31,7 +33,7 @@ const randomPhrase = false; /* true -> the same phrase could repeat any time
                              * false -> take off already solved phrases, so can not be the same phrase in one game
                              */
 
-const setHint = 20;         /* 
+const setHint = 15;         /* 
                             * Set hint to any number
                             * 
                             */                             
@@ -59,7 +61,7 @@ const phrase = document.querySelector('#phrase');
 
 let choosedLetter = [];
 
-
+// document.querySelector('#credit').textContent = `£ ${localStorage.getItem('credit')}`;
 
 const game = new Game; //new game class
 
@@ -69,7 +71,7 @@ let allPhrasesForReset = [];
 let lastPhrase = [];
 allPhrasesForReset.push(game.phrases);
 allPhrase.push(game.phrases);
-
+//console.log(allPhrasesForReset)
 //add click event on start button
 startButton.addEventListener('click', () => {
    
@@ -129,7 +131,7 @@ window.addEventListener('keydown', function (e) {
 
 //use event click for hint button and call hintFW method
 hint.addEventListener('click', () => {
-    game.hintFW();
+    game.hintFW(false);
 })
 
 
