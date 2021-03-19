@@ -26,7 +26,7 @@ const startingTime = 450;   // set the starting time for level 1 - (180 seconds 
 
 
 const decreaseTime = 20;    //every time when level is go up will decrease from the current time the given number 
-                            //forexample if you give 20 seconds in next level will decrease 3 minutes by 20 seconds
+                            //forexample if you give 20 seconds in next level will decrease by 20 seconds
 
 
 const randomPhrase = false; /* true -> the same phrase could repeat any time 
