@@ -78,3 +78,25 @@ const setHint = 15;
 ```
 
 <p>Show random letter from phrase. This number define how many times you could use hint per game</p>    
+<br>
+
+<h3>Add words in to game</h3>
+
+```javascript
+    [
+       ['City'], //group name
+       ["London", "New York", "Bristol"]
+   ],
+   [
+      ['Animal'], //group name
+      ["Bear", "Tiger", "Panda", "Camel"]
+   ],
+   [
+      ['Food'], //group name
+      ["Sandwich", "Bread", "Steak", "Rice"]
+   ]
+```
+
+The game using multidimensional array, `['City']` group name, then words under the group `["London", "New York", "Bristol"]`.
+
+For example if you would like to access `['Food']` group is will be `[2][0]` then access words in group `[2][1]`.
