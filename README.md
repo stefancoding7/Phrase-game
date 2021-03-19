@@ -28,31 +28,53 @@
 </ul>
 
 <h3>Set the game to your own rules</h3>
-<p>For settings go to </p>  `app.js`
+<p>For settings go to <b>/app.js</b></p>  
 
 ```javascript
 const maxLevel = 21;    
 ```
 
-<p>set the max level of the game. After when gamer hits the max level the game will end
+<p>Set the max level of the game. After when gamer hits the max level the game will end
                         * forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
                         * you would like to finish the game with level 3 set the value to level 4</p>
 <br>
-const percent = 50;         /* help beginning of the game. this value is percentage (%), so if you set maxLevel to 20 and percent to 25 in first 5 level get  random few letter  to help 
-                            */
-<br>
-const startingTime = 450;   // set the starting time for level 1 - (180 seconds means 3 minutes)
+
+```javascript
+const percent = 50; 
+```
+
+<p>Help beginning of the game. this value is percentage (%), so if you set maxLevel to 20 and percent to 25 in first 5 level get  random few letter  to help </p>
+       
 <br>
 
-const decreaseTime = 20;    //every time when level is go up will decrease from the current time the given number 
-                            //forexample if you give 20 seconds in next level will decrease by 20 seconds
+```javascript
+const startingTime = 450;  
+```
+<p>Set the starting time for level 1 - (180 seconds means 3 minutes)</p>
+<br>
+
+
+```javascript
+const decreaseTime = 20;   
+```
+
+<p>Every time when level is go up will decrease from the current time the given number 
+                            forexample if you give 20 seconds in next level will decrease by 20 seconds</p>
 
 <br>
-const randomPhrase = false; /* true -> the same phrase could repeat any time 
-                             * false -> take off already solved phrases, so can not be the same phrase in one game
-                             */
+
+```javascript
+const randomPhrase = false;
+```
+
+<p><b>true -></b> the same phrase could repeat any time <br>
+                              <b>false -></b> take off already solved phrases, so can not be the same phrase in one game</p>
+
+                             
 <br>
-const setHint = 15;         /* 
-                            * Set hint to any number
-                            * 
-                            */   
+
+```javascript
+const setHint = 15;
+```
+
+<p>Show random letter from phrase. This number define how many times you could use hint per game</p>    
