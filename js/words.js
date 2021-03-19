@@ -1,6 +1,3 @@
-
-let propertyNames = ['city', 'name'];
-
 let data = [
    [
        ['City'], //group name
