@@ -28,21 +28,15 @@
 </ul>
 
 <h3>Set the game to your own rules</h3>
-
+<p>This </p>
 
 ```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+const maxLevel = 21;    
 ```
 
-
-
-    ```javascript
-    const maxLevel = 21;        /* set the max level of the game. After when gamer hits the max level the game will end
-                            * forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
-                            * you would like to finish the game with level 3 set the value to level 4
-                            */
-    ```
+<p>set the max level of the game. After when gamer hits the max level the game will end
+                        * forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
+                        * you would like to finish the game with level 3 set the value to level 4</p>
 <br>
 const percent = 50;         /* help beginning of the game. this value is percentage (%), so if you set maxLevel to 20 and percent to 25 in first 5 level get  random few letter  to help 
                             */
