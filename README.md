@@ -28,7 +28,7 @@
 </ul>
 
 <h3>Set the game to your own rules</h3>
-<p>For settings go to <b>/app.js</b></p>  
+<p>For settings go to <b>/js/app.js</b></p>  
 
 ```javascript
 const maxLevel = 21;    
@@ -81,6 +81,8 @@ const setHint = 15;
 <br>
 
 <h3>Add words in to game</h3>
+<p>For add words go to <b>/js/words.js</b></p>
+
 
 ```javascript
     [
