@@ -1,5 +1,4 @@
-# Phrase Hunter Game v2
-<h1>Phrase Hunter game (OOP)</h1>
+# Phrase Hunter Game v2 (OOP)
 
 <p>This game is a browser-based word guessing game using OOP. The game chooses a random phrase, split the phrase into letters, and put those letters onto the gameboard. Each time the player guesses a letter, the program compares the letter the player has chosen with the random phrase</p>
 
