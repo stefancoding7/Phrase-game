@@ -28,7 +28,7 @@
 </ul>
 
 <h3>Set the game to your own rules</h3>
-<p>This </p>
+<p>For settings go to </p>  `app.js`
 
 ```javascript
 const maxLevel = 21;    
