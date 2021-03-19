@@ -28,8 +28,8 @@
 </ul>
 
 <h3>Set the game to your own rules</h3>
-    ```javascript
-    const maxLevel = 21;</b>        /* set the max level of the game. After when gamer hits the max level the game will end
+    ```
+    const maxLevel = 21;        /* set the max level of the game. After when gamer hits the max level the game will end
                             * forexample if you set level 3 the gamer when hit level 2 will win the game becasue level 3 is a max value.. so if 
                             * you would like to finish the game with level 3 set the value to level 4
                             */
