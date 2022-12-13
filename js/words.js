@@ -1,7 +1,7 @@
 let data = [
    [
        ['City'], //group name
-       ["London", "New York", "Bristol"]
+       ["Liverpool", "Leeds"]
    ],
    [
       ['Animal'], //group name
